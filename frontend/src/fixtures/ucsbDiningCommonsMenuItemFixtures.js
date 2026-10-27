@@ -1,4 +1,3 @@
-
 const ucsbDiningCommonsMenuItemFixtures = {
   oneUCSBDiningCommonsMenuItem: {
     id: 1,
