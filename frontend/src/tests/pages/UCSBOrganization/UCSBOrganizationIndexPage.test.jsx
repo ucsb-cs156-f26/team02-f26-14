@@ -1,4 +1,3 @@
-
 import { render, screen } from "@testing-library/react";
 import UCSBOrganizationIndexPage from "main/pages/UCSBOrganization/UCSBOrganizationIndexPage";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";

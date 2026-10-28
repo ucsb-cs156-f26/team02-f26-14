@@ -91,7 +91,7 @@ function App() {
         </>
       )}
 
-{hasRole(currentUser, "ROLE_USER") && (
+      {hasRole(currentUser, "ROLE_USER") && (
         <>
           <Route
             exact
@@ -114,7 +114,6 @@ function App() {
           />
         </>
       )}
-
     </Routes>
   );
 }
