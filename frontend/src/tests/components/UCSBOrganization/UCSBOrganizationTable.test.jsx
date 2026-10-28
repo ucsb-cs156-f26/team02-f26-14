@@ -1,3 +1,4 @@
+
 import { fireEvent, render, waitFor, screen } from "@testing-library/react";
 import { ucsbOrganizationFixtures } from "fixtures/ucsbOrganizationFixtures";
 import UCSBOrganizationTable from "main/components/UCSBOrganization/UCSBOrganizationTable";
@@ -6,8 +7,13 @@ import { MemoryRouter } from "react-router";
 import { currentUserFixtures } from "fixtures/currentUserFixtures";
 import axios from "axios";
 import AxiosMockAdapter from "axios-mock-adapter";
+import { toast } from "react-toastify";
 
 const mockedNavigate = vi.fn();
+
+vi.mock("react-toastify", () => ({
+  toast: vi.fn(),
+}));
 
 vi.mock("react-router", async () => {
   const originalModule = await vi.importActual("react-router");
@@ -148,6 +154,8 @@ describe("UCSBOrganizationTable tests", () => {
       .onDelete("/api/ucsborganization")
       .reply(200, { message: "UCSB organization deleted" });
 
+    toast.mockClear();
+
     render(
       <QueryClientProvider client={queryClient}>
         <MemoryRouter>
@@ -165,6 +173,11 @@ describe("UCSBOrganizationTable tests", () => {
 
     await waitFor(() => {
       expect(axiosMock.history.delete.length).toBe(1);
+      expect(axiosMock.history.delete[0].url).toBe("/api/ucsborganization");
+      expect(axiosMock.history.delete[0].method).toBe("delete");
+      expect(toast).toHaveBeenCalledWith({
+        message: "UCSB organization deleted",
+      });
     });
 
     expect(axiosMock.history.delete[0].params).toEqual({
