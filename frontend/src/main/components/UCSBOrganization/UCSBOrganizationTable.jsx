@@ -59,10 +59,6 @@ export default function UCSBOrganizationTable({
   }
 
   return (
-    <OurTable
-      data={organizations}
-      columns={columns}
-      testid={testIdPrefix}
-    />
+    <OurTable data={organizations} columns={columns} testid={testIdPrefix} />
   );
 }
