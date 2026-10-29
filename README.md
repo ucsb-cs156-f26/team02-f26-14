@@ -7,7 +7,7 @@ Instructions: https://ucsb-cs156.github.io/f26/lab/team02.html
 
 Prod: https://team02.dokku-14.cs.ucsb.edu/
 
-QA: not yet deployed 
+QA: https://team02-qa.dokku-14.cs.ucsb.edu/login/oauth2/code/google
 
 ## Project Links
 
