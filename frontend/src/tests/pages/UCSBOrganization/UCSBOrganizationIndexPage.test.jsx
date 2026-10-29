@@ -118,6 +118,12 @@ describe("UCSBOrganizationIndexPage tests", () => {
     ).not.toBeInTheDocument();
 
     expect(
+      screen.queryByRole("button", {
+        name: /create ucsb organization/i,
+      }),
+    ).not.toBeInTheDocument();
+
+    expect(
       screen.queryByTestId(`${testId}-cell-row-0-col-Edit-button`),
     ).not.toBeInTheDocument();
 
