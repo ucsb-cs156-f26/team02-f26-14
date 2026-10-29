@@ -1,4 +1,3 @@
-
 import BasicLayout from "main/layouts/BasicLayout/BasicLayout";
 import UCSBOrganizationForm from "main/components/UCSBOrganization/UCSBOrganizationForm";
 import { Navigate } from "react-router";
@@ -18,9 +17,7 @@ export default function UCSBOrganizationCreatePage({ storybook = false }) {
   });
 
   const onSuccess = (organization) => {
-    toast(
-      `New UCSB organization created - code: ${organization.orgCode}`,
-    );
+    toast(`New UCSB organization created - code: ${organization.orgCode}`);
   };
 
   const mutation = useBackendMutation(
