@@ -1,26 +1,30 @@
-# STARTER-team02
 
-Instructions: <https://ucsb-cs156.github.io/s26/lab/team02.html>
+## team02-f26-14
 
-TODO: change heading above to your repo name, e.g. `# team02-s26-17`
+Instructions: https://ucsb-cs156.github.io/f26/lab/team02.html
 
-TODO: Add a link to the deployed Dokku app for your team here, e.g.
+## Deployments
 
-Deployments:
+Prod: https://team02.dokku-14.cs.ucsb.edu/
 
-* Prod: <https://team02.dokku-17.cs.ucsb.edu>
-* QA: <https://team02-qa.dokku-17.cs.ucsb.edu>
+QA: not yet deployed 
 
-TODO: Fill in this table with correct information. 
+## Project Links
 
-| Table                     | Name         | Github Id |
-|---------------------------|--------------|-----------|
-| UCSBDiningCommonsMenuItem |              |           |
-| UCSBOrganization          |              |           |
-| RecommendationRequest     |              |           |
-| MenuItemReview            |              |           |
-| HelpRequest               |              |           |
-| Articles                  |              |           |
+GitHub Repository: https://github.com/ucsb-cs156-f26/team02-f26-14
+
+GitHub Pages: https://ucsb-cs156-f26.github.io/team02-f26-14/
+
+Kanban Board: https://github.com/orgs/ucsb-cs156-f26/projects/39
+
+| Table                     | Name                      | GitHub ID             |
+|---------------------------|---------------------------|-----------------------|
+| UCSBDiningCommonsMenuItem | Heloisa Alcantara Furtado | HeloisaAlcantaraFurtado04 |
+| UCSBOrganization          | Aylin Lopez               | aylin268              |
+| RecommendationRequest     | Ryan Ramos                | R-R-R-N-U-C-S-B       |
+| MenuItemReview            | Krithi Haresamudra       | krithih               |
+| HelpRequest               | Ray De Los Santos         | dlssantosray          |
+| Articles                  | Vishwath                  | VishwathS             |
 
 Remember though, that in spite of these initial  assignments, it is still
 a team project.  Please help other team members to finish their work
