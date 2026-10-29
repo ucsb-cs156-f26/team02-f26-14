@@ -1,4 +1,4 @@
-// Test file I created
+//Test file I created
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import { BrowserRouter } from "react-router";
 import { vi, test, expect, describe } from "vitest";
@@ -158,7 +158,7 @@ describe("RecommendationRequestForm", () => {
     ).toBeInTheDocument();
   });
 
-  test("rejects requester email addresses with extra text after them", async () => {
+  test("rejects requester email addresses with extra text before them", async () => {
     const submitAction = vi.fn();
 
     render(
@@ -167,7 +167,7 @@ describe("RecommendationRequestForm", () => {
       </BrowserRouter>,
     );
 
-    fillRequiredFields("student@example.com!", "professor@example.com");
+    fillRequiredFields("!student@example.com", "professor@example.com");
 
     fireEvent.click(screen.getByTestId("RecommendationRequestForm-submit"));
 
@@ -178,7 +178,7 @@ describe("RecommendationRequestForm", () => {
     expect(submitAction).not.toHaveBeenCalled();
   });
 
-  test("rejects professor email addresses with extra text before them", async () => {
+  test("rejects professor email addresses with extra text after them", async () => {
     const submitAction = vi.fn();
 
     render(
@@ -187,7 +187,7 @@ describe("RecommendationRequestForm", () => {
       </BrowserRouter>,
     );
 
-    fillRequiredFields("student@example.com", "!professor@example.com");
+    fillRequiredFields("student@example.com", "professor@example.com!");
 
     fireEvent.click(screen.getByTestId("RecommendationRequestForm-submit"));
 
