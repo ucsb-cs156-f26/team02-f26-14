@@ -1,6 +1,5 @@
-# STARTER-team02
 
-# team02-f26-14
+## team02-f26-14
 
 Instructions: https://ucsb-cs156.github.io/f26/lab/team02.html
 
