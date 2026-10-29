@@ -50,6 +50,8 @@ describe("UCSBDiningCommonsMenuItemCreatePage tests", () => {
   const renderPage = () => {
     const queryClient = new QueryClient();
 
+  const renderPage = () => {
+    const queryClient = new QueryClient();
     render(
       <QueryClientProvider client={queryClient}>
         <MemoryRouter>
@@ -57,6 +59,8 @@ describe("UCSBDiningCommonsMenuItemCreatePage tests", () => {
         </MemoryRouter>
       </QueryClientProvider>,
     );
+
+    return queryClient;
   };
 
   test("renders the create form", async () => {
