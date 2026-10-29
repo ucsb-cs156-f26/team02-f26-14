@@ -19,8 +19,7 @@ vi.mock("react-toastify", async (importOriginal) => ({
 describe("UCSBDiningCommonsMenuItemEditPage tests", () => {
   const axiosMock = new AxiosMockAdapter(axios);
   const endpoint = "/api/UCSBDiningCommonsMenuItem";
-  const item =
-    ucsbDiningCommonsMenuItemFixtures.oneUCSBDiningCommonsMenuItem;
+  const item = ucsbDiningCommonsMenuItemFixtures.oneUCSBDiningCommonsMenuItem;
 
   const setupBackend = () => {
     axiosMock.reset();
@@ -49,9 +48,7 @@ describe("UCSBDiningCommonsMenuItemEditPage tests", () => {
             <Route
               path="/diningcommonsmenuitem/edit/:id"
               element={
-                <UCSBDiningCommonsMenuItemEditPage
-                  storybook={storybook}
-                />
+                <UCSBDiningCommonsMenuItemEditPage storybook={storybook} />
               }
             />
             <Route
@@ -61,7 +58,7 @@ describe("UCSBDiningCommonsMenuItemEditPage tests", () => {
           </Routes>
         </MemoryRouter>
       </QueryClientProvider>,
-       );
+    );
 
     return { ...rendered, queryClient };
   };
@@ -82,11 +79,13 @@ describe("UCSBDiningCommonsMenuItemEditPage tests", () => {
 
     expect(await screen.findByLabelText("Name")).toHaveValue("Pasta");
     expect(screen.getByDisplayValue("DLG")).toBeInTheDocument();
-    expect(screen.getByText("Edit UCSB Dining Commons Menu Item")).toBeInTheDocument();
+    expect(
+      screen.getByText("Edit UCSB Dining Commons Menu Item"),
+    ).toBeInTheDocument();
     expect(screen.getByRole("button", { name: "Update" })).toBeInTheDocument();
 
     expect(
-    axiosMock.history.get.find((request) => request.url === endpoint).params,
+      axiosMock.history.get.find((request) => request.url === endpoint).params,
     ).toEqual({ id: "1" });
   });
 
@@ -99,7 +98,6 @@ describe("UCSBDiningCommonsMenuItemEditPage tests", () => {
     });
     const { queryClient } = renderPage();
     const invalidateSpy = vi.spyOn(queryClient, "invalidateQueries");
-    
 
     const nameInput = await screen.findByLabelText("Name");
 
@@ -128,12 +126,11 @@ describe("UCSBDiningCommonsMenuItemEditPage tests", () => {
 
     expect(await screen.findByText("Index Page")).toBeInTheDocument();
     await waitFor(() => {
-    expect(invalidateSpy).toHaveBeenCalledWith({
-    queryKey: ["/api/UCSBDiningCommonsMenuItem/all"],
+      expect(invalidateSpy).toHaveBeenCalledWith({
+        queryKey: ["/api/UCSBDiningCommonsMenuItem/all"],
+      });
     });
-});
-  
-});
+  });
 
   test("does not submit invalid data", async () => {
     setupBackend();
@@ -161,20 +158,18 @@ describe("UCSBDiningCommonsMenuItemEditPage tests", () => {
 
     expect(await screen.findByDisplayValue("DLG")).toBeInTheDocument();
     const itemRequest = axiosMock.history.get.find(
-    (request) => request.url === endpoint,
-);
+      (request) => request.url === endpoint,
+    );
 
-expect(itemRequest).toBeDefined();
-expect(itemRequest.params).toEqual({ id: 1 });
+    expect(itemRequest).toBeDefined();
+    expect(itemRequest.params).toEqual({ id: 1 });
   });
 
   test("reports a backend GET error", async () => {
     setupBackend();
     axiosMock.onGet(endpoint).timeout();
 
-    const consoleSpy = vi
-      .spyOn(console, "error")
-      .mockImplementation(() => {});
+    const consoleSpy = vi.spyOn(console, "error").mockImplementation(() => {});
 
     try {
       renderPage();
