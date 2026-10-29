@@ -126,6 +126,15 @@ describe("UCSBOrganizationEditPage tests", () => {
 
       await screen.findByTestId("UCSBOrganizationForm-orgCode");
 
+      expect(
+        axiosMock.history.get.some(
+          (request) =>
+            request.url === "/api/ucsborganization" &&
+            request.method === "get" &&
+            request.params?.orgCode === "ACM",
+        ),
+      ).toBe(true);
+
       const orgCodeField = screen.getByTestId("UCSBOrganizationForm-orgCode");
       const shortNameField = screen.getByTestId(
         "UCSBOrganizationForm-orgTranslationShort",

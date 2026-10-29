@@ -15,6 +15,7 @@ export default function UCSBOrganizationEditPage({ storybook = false }) {
     // Stryker disable next-line all : don't test internal caching
     [`/api/ucsborganization?orgCode=${id}`],
     {
+      // Stryker disable next-line StringLiteral: Axios defaults to GET when method is empty
       method: "GET",
       url: "/api/ucsborganization",
       params: {
