@@ -81,7 +81,8 @@ describe("UCSBDiningCommonsMenuItemCreatePage tests", () => {
 
     axiosMock.onPost("/api/UCSBDiningCommonsMenuItem/post").reply(202, item);
 
-    renderPage();
+    const queryClient = renderPage();
+    const invalidateSpy = vi.spyOn(queryClient, "invalidateQueries");
 
     fireEvent.change(await screen.findByLabelText("Dining Commons Code"), {
       target: { value: "DLG" },
@@ -112,7 +113,18 @@ describe("UCSBDiningCommonsMenuItemCreatePage tests", () => {
         to: "/diningcommonsmenuitem",
       });
     });
+    await waitFor(() => {
+      expect(mockToast).toHaveBeenCalledWith(
+      "New UCSBDiningCommonsMenuItem Created - id: 1 name: Pasta",
+    );
+  }); 
+    await waitFor(() => {
+      expect(invalidateSpy).toHaveBeenCalledWith({
+      queryKey: ["/api/UCSBDiningCommonsMenuItem/all"],
   });
+});
+});
+
 
   test("does not submit invalid data", async () => {
     renderPage();
