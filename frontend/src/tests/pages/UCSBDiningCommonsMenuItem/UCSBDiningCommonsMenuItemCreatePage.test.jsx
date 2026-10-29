@@ -49,9 +49,6 @@ describe("UCSBDiningCommonsMenuItemCreatePage tests", () => {
 
   const renderPage = () => {
     const queryClient = new QueryClient();
-
-  const renderPage = () => {
-    const queryClient = new QueryClient();
     render(
       <QueryClientProvider client={queryClient}>
         <MemoryRouter>
