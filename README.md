@@ -8,7 +8,7 @@ Instructions: https://ucsb-cs156.github.io/f26/lab/team02.html
 
 Prod: https://team02.dokku-14.cs.ucsb.edu/
 
-QA: https://team02-f26-14-qa.dokku-14.cs.ucsb.edu/
+QA: not yet deployed 
 
 ## Project Links
 
