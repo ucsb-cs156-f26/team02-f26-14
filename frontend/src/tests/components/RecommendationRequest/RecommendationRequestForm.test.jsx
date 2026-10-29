@@ -1,5 +1,4 @@
-// Test file to go with the RecommendationRequestForm.jsx file
-
+// Test file I created
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import { BrowserRouter } from "react-router";
 import { vi, test, expect, describe } from "vitest";
@@ -23,6 +22,24 @@ const sampleRequest = {
   dateRequested: "2026-10-21T10:00",
   dateNeeded: "2026-11-15T00:00",
   done: false,
+};
+
+const fillRequiredFields = (requesterEmail, professorEmail) => {
+  fireEvent.change(screen.getByLabelText(/Requester Email/i), {
+    target: { value: requesterEmail },
+  });
+  fireEvent.change(screen.getByLabelText(/Professor Email/i), {
+    target: { value: professorEmail },
+  });
+  fireEvent.change(screen.getByLabelText(/Explanation/i), {
+    target: { value: "Recommendation for graduate school" },
+  });
+  fireEvent.change(screen.getByLabelText(/Date Requested/i), {
+    target: { value: "2026-10-21T10:00" },
+  });
+  fireEvent.change(screen.getByLabelText(/Date Needed/i), {
+    target: { value: "2026-11-15T00:00" },
+  });
 };
 
 describe("RecommendationRequestForm", () => {
@@ -129,12 +146,7 @@ describe("RecommendationRequestForm", () => {
       </BrowserRouter>,
     );
 
-    fireEvent.change(screen.getByLabelText(/Requester Email/i), {
-      target: { value: "not-an-email" },
-    });
-    fireEvent.change(screen.getByLabelText(/Professor Email/i), {
-      target: { value: "also-not-an-email" },
-    });
+    fillRequiredFields("not-an-email", "also-not-an-email");
 
     fireEvent.click(screen.getByTestId("RecommendationRequestForm-submit"));
 
@@ -147,39 +159,43 @@ describe("RecommendationRequestForm", () => {
   });
 
   test("rejects email addresses with extra text before them", async () => {
+    const submitAction = vi.fn();
+
     render(
       <BrowserRouter>
-        <RecommendationRequestForm submitAction={vi.fn()} />
+        <RecommendationRequestForm submitAction={submitAction} />
       </BrowserRouter>,
     );
 
-    fireEvent.change(screen.getByLabelText(/Requester Email/i), {
-      target: { value: "!student@example.com" },
-    });
+    fillRequiredFields("!student@example.com", "professor@example.com");
 
     fireEvent.click(screen.getByTestId("RecommendationRequestForm-submit"));
 
     expect(
       await screen.findByText("Enter a valid requester email address."),
     ).toBeInTheDocument();
+
+    expect(submitAction).not.toHaveBeenCalled();
   });
 
   test("rejects email addresses with extra text after them", async () => {
+    const submitAction = vi.fn();
+
     render(
       <BrowserRouter>
-        <RecommendationRequestForm submitAction={vi.fn()} />
+        <RecommendationRequestForm submitAction={submitAction} />
       </BrowserRouter>,
     );
 
-    fireEvent.change(screen.getByLabelText(/Professor Email/i), {
-      target: { value: "professor@example.com!" },
-    });
+    fillRequiredFields("student@example.com", "professor@example.com!");
 
     fireEvent.click(screen.getByTestId("RecommendationRequestForm-submit"));
 
     expect(
       await screen.findByText("Enter a valid professor email address."),
     ).toBeInTheDocument();
+
+    expect(submitAction).not.toHaveBeenCalled();
   });
 
   test("submits valid form contents", async () => {
@@ -191,21 +207,7 @@ describe("RecommendationRequestForm", () => {
       </BrowserRouter>,
     );
 
-    fireEvent.change(screen.getByLabelText(/Requester Email/i), {
-      target: { value: "student@example.com" },
-    });
-    fireEvent.change(screen.getByLabelText(/Professor Email/i), {
-      target: { value: "professor@example.com" },
-    });
-    fireEvent.change(screen.getByLabelText(/Explanation/i), {
-      target: { value: "Recommendation for graduate school" },
-    });
-    fireEvent.change(screen.getByLabelText(/Date Requested/i), {
-      target: { value: "2026-10-21T10:00" },
-    });
-    fireEvent.change(screen.getByLabelText(/Date Needed/i), {
-      target: { value: "2026-11-15T00:00" },
-    });
+    fillRequiredFields("student@example.com", "professor@example.com");
 
     fireEvent.click(screen.getByTestId("RecommendationRequestForm-submit"));
 
