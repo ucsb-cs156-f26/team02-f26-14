@@ -73,6 +73,28 @@ describe("MenuItemReviewForm tests", () => {
     ).toBeInTheDocument();
   });
 
+  test("Correct Error messages when stars is too low or comments is too long", async () => {
+    render(
+      <Router>
+        <MenuItemReviewForm />
+      </Router>,
+    );
+    await screen.findByTestId("MenuItemReviewForm-stars");
+    const starsField = screen.getByTestId("MenuItemReviewForm-stars");
+    const commentsField = screen.getByTestId("MenuItemReviewForm-comments");
+    const submitButton = screen.getByTestId("MenuItemReviewForm-submit");
+
+    fireEvent.change(starsField, { target: { value: "0" } });
+    fireEvent.change(commentsField, { target: { value: "a".repeat(501) } });
+    fireEvent.click(submitButton);
+
+    await screen.findByText(/Stars must be between 1 and 5./);
+    expect(
+      screen.getByText(/Stars must be between 1 and 5./),
+    ).toBeInTheDocument();
+    expect(screen.getByText(/Max length 500 characters./)).toBeInTheDocument();
+  });
+
   test("Correct Error messsages on missing input", async () => {
     render(
       <Router>
@@ -136,6 +158,10 @@ describe("MenuItemReviewForm tests", () => {
     expect(
       screen.queryByText(/Stars must be between 1 and 5./),
     ).not.toBeInTheDocument();
+
+    const submittedData = mockSubmitAction.mock.calls[0][0];
+    expect(typeof submittedData.itemId).toBe("number");
+    expect(typeof submittedData.stars).toBe("number");
   });
 
   test("that navigate(-1) is called when Cancel is clicked", async () => {
