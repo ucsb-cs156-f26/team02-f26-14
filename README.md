@@ -1,17 +1,22 @@
 # STARTER-team02
 
-Instructions: <https://ucsb-cs156.github.io/s26/lab/team02.html>
+# team02-f26-14
 
-TODO: change heading above to your repo name, e.g. `# team02-s26-17`
+Instructions: https://ucsb-cs156.github.io/f26/lab/team02.html
 
-TODO: Add a link to the deployed Dokku app for your team here, e.g.
+## Deployments
 
-Deployments:
+Prod: https://team02-f26-14.dokku-14.cs.ucsb.edu/
 
-* Prod: <https://team02.dokku-17.cs.ucsb.edu>
-* QA: <https://team02-qa.dokku-17.cs.ucsb.edu>
+QA: https://team02-f26-14-qa.dokku-14.cs.ucsb.edu/
 
-TODO: Fill in this table with correct information. 
+## Project Links
+
+GitHub Repository: https://github.com/ucsb-cs156-f26/team02-f26-14
+
+GitHub Pages: https://ucsb-cs156-f26.github.io/team02-f26-14/
+
+Kanban Board: https://github.com/orgs/ucsb-cs156-f26/projects/39
 
 | Table                     | Name         | Github Id |
 |---------------------------|--------------|-----------|
