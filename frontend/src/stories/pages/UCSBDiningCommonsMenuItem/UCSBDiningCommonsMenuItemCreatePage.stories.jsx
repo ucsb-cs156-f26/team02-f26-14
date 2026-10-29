@@ -1,3 +1,4 @@
+// Storybook preview for UCSBDiningCommonsMenuItemCreatePage.
 import React from "react";
 import { apiCurrentUserFixtures } from "fixtures/currentUserFixtures";
 import { systemInfoFixtures } from "fixtures/systemInfoFixtures";
