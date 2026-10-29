@@ -1,4 +1,4 @@
-//Test file to go with the RecommendationRequestForm.jsx file
+// Test file to go with the RecommendationRequestForm.jsx file
 
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import { BrowserRouter } from "react-router";
@@ -40,6 +40,7 @@ describe("RecommendationRequestForm", () => {
     expect(screen.getByLabelText(/Date Needed/i)).toBeInTheDocument();
     expect(screen.getByLabelText(/Completed/i)).toBeInTheDocument();
     expect(screen.queryByLabelText("ID")).not.toBeInTheDocument();
+
     expect(
       screen.getByTestId("RecommendationRequestForm-requesterEmail"),
     ).toBeInTheDocument();
@@ -79,6 +80,9 @@ describe("RecommendationRequestForm", () => {
     );
 
     expect(screen.getByLabelText("ID")).toHaveValue("1");
+    expect(
+      screen.getByTestId("RecommendationRequestForm-id"),
+    ).toBeInTheDocument();
     expect(screen.getByLabelText(/Requester Email/i)).toHaveValue(
       "student@example.com",
     );
@@ -126,10 +130,10 @@ describe("RecommendationRequestForm", () => {
     );
 
     fireEvent.change(screen.getByLabelText(/Requester Email/i), {
-      target: { value: "student@example.com extra" },
+      target: { value: "not-an-email" },
     });
     fireEvent.change(screen.getByLabelText(/Professor Email/i), {
-      target: { value: "prefix student@example.com" },
+      target: { value: "also-not-an-email" },
     });
 
     fireEvent.click(screen.getByTestId("RecommendationRequestForm-submit"));
@@ -139,6 +143,42 @@ describe("RecommendationRequestForm", () => {
     ).toBeInTheDocument();
     expect(
       screen.getByText("Enter a valid professor email address."),
+    ).toBeInTheDocument();
+  });
+
+  test("rejects email addresses with extra text before them", async () => {
+    render(
+      <BrowserRouter>
+        <RecommendationRequestForm submitAction={vi.fn()} />
+      </BrowserRouter>,
+    );
+
+    fireEvent.change(screen.getByLabelText(/Requester Email/i), {
+      target: { value: "prefix student@example.com" },
+    });
+
+    fireEvent.click(screen.getByTestId("RecommendationRequestForm-submit"));
+
+    expect(
+      await screen.findByText("Enter a valid requester email address."),
+    ).toBeInTheDocument();
+  });
+
+  test("rejects email addresses with extra text after them", async () => {
+    render(
+      <BrowserRouter>
+        <RecommendationRequestForm submitAction={vi.fn()} />
+      </BrowserRouter>,
+    );
+
+    fireEvent.change(screen.getByLabelText(/Professor Email/i), {
+      target: { value: "professor@example.com extra" },
+    });
+
+    fireEvent.click(screen.getByTestId("RecommendationRequestForm-submit"));
+
+    expect(
+      await screen.findByText("Enter a valid professor email address."),
     ).toBeInTheDocument();
   });
 
@@ -166,6 +206,7 @@ describe("RecommendationRequestForm", () => {
     fireEvent.change(screen.getByLabelText(/Date Needed/i), {
       target: { value: "2026-11-15T00:00" },
     });
+
     fireEvent.click(screen.getByTestId("RecommendationRequestForm-submit"));
 
     await waitFor(() => expect(submitAction).toHaveBeenCalledTimes(1));
