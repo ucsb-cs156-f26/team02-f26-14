@@ -154,7 +154,7 @@ describe("RecommendationRequestForm", () => {
     );
 
     fireEvent.change(screen.getByLabelText(/Requester Email/i), {
-      target: { value: "prefix student@example.com" },
+      target: { value: "!student@example.com" },
     });
 
     fireEvent.click(screen.getByTestId("RecommendationRequestForm-submit"));
@@ -172,7 +172,7 @@ describe("RecommendationRequestForm", () => {
     );
 
     fireEvent.change(screen.getByLabelText(/Professor Email/i), {
-      target: { value: "professor@example.com extra" },
+      target: { value: "professor@example.com!" },
     });
 
     fireEvent.click(screen.getByTestId("RecommendationRequestForm-submit"));

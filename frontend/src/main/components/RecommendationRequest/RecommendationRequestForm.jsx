@@ -1,4 +1,4 @@
-//RecommendationRequestForm.jsx file I created
+// RecommendationRequestForm.jsx file I created
 import { Button, Form } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router";
@@ -44,7 +44,7 @@ function RecommendationRequestForm({
           {...register("requesterEmail", {
             required: "Requester email is required.",
             pattern: {
-              value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+              value: /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/,
               message: "Enter a valid requester email address.",
             },
           })}
@@ -63,7 +63,7 @@ function RecommendationRequestForm({
           {...register("professorEmail", {
             required: "Professor email is required.",
             pattern: {
-              value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+              value: /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/,
               message: "Enter a valid professor email address.",
             },
           })}
@@ -129,9 +129,10 @@ function RecommendationRequestForm({
       </Form.Group>
       <Button type="submit" data-testid={`${testIdPrefix}-submit`}>
         {buttonLabel}
-      </Button>{" "}
+      </Button>
       <Button
         variant="secondary"
+        className="ms-2"
         onClick={() => navigate(-1)}
         data-testid={`${testIdPrefix}-cancel`}
       >
