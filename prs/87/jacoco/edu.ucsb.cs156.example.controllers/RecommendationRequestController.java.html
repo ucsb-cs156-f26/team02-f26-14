@@ -54,12 +54,12 @@ import org.springframework.web.bind.annotation.RestController;
   @PreAuthorize(&quot;hasRole('ROLE_USER')&quot;)
   @GetMapping(&quot;&quot;)
   public RecommendationRequest getById(@Parameter(name = &quot;id&quot;) @RequestParam Long id) {
-<span class="nc" id="L57">    RecommendationRequest request =</span>
+<span class="fc" id="L57">    RecommendationRequest request =</span>
         recommendationRequestRepository
-<span class="nc" id="L59">            .findById(id)</span>
-<span class="nc" id="L60">            .orElseThrow(() -&gt; new EntityNotFoundException(RecommendationRequest.class, id));</span>
+<span class="fc" id="L59">            .findById(id)</span>
+<span class="fc" id="L60">            .orElseThrow(() -&gt; new EntityNotFoundException(RecommendationRequest.class, id));</span>
 
-<span class="nc" id="L62">    return request;</span>
+<span class="fc" id="L62">    return request;</span>
   }
 
   /**
@@ -109,21 +109,21 @@ import org.springframework.web.bind.annotation.RestController;
       @Parameter(name = &quot;id&quot;) @RequestParam Long id,
       @RequestBody @Valid RecommendationRequest incoming) {
 
-<span class="nc" id="L112">    RecommendationRequest request =</span>
+<span class="fc" id="L112">    RecommendationRequest request =</span>
         recommendationRequestRepository
-<span class="nc" id="L114">            .findById(id)</span>
-<span class="nc" id="L115">            .orElseThrow(() -&gt; new EntityNotFoundException(RecommendationRequest.class, id));</span>
+<span class="fc" id="L114">            .findById(id)</span>
+<span class="fc" id="L115">            .orElseThrow(() -&gt; new EntityNotFoundException(RecommendationRequest.class, id));</span>
 
-<span class="nc" id="L117">    request.setRequesterEmail(incoming.getRequesterEmail());</span>
-<span class="nc" id="L118">    request.setProfessorEmail(incoming.getProfessorEmail());</span>
-<span class="nc" id="L119">    request.setExplanation(incoming.getExplanation());</span>
-<span class="nc" id="L120">    request.setDateRequested(incoming.getDateRequested());</span>
-<span class="nc" id="L121">    request.setDateNeeded(incoming.getDateNeeded());</span>
-<span class="nc" id="L122">    request.setDone(incoming.getDone());</span>
+<span class="fc" id="L117">    request.setRequesterEmail(incoming.getRequesterEmail());</span>
+<span class="fc" id="L118">    request.setProfessorEmail(incoming.getProfessorEmail());</span>
+<span class="fc" id="L119">    request.setExplanation(incoming.getExplanation());</span>
+<span class="fc" id="L120">    request.setDateRequested(incoming.getDateRequested());</span>
+<span class="fc" id="L121">    request.setDateNeeded(incoming.getDateNeeded());</span>
+<span class="fc" id="L122">    request.setDone(incoming.getDone());</span>
 
-<span class="nc" id="L124">    recommendationRequestRepository.save(request);</span>
+<span class="fc" id="L124">    recommendationRequestRepository.save(request);</span>
 
-<span class="nc" id="L126">    return request;</span>
+<span class="fc" id="L126">    return request;</span>
   }
 
   /**
@@ -139,12 +139,12 @@ import org.springframework.web.bind.annotation.RestController;
       @Parameter(name = &quot;id&quot;, description = &quot;ID of the recommendation request&quot;) @RequestParam
           Long id) {
 
-<span class="nc bnc" id="L142" title="All 2 branches missed.">    if (!recommendationRequestRepository.existsById(id)) {</span>
-<span class="nc" id="L143">      return ResponseEntity.status(HttpStatus.NOT_FOUND).body(&quot;record &quot; + id + &quot; not found&quot;);</span>
+<span class="fc bfc" id="L142" title="All 2 branches covered.">    if (!recommendationRequestRepository.existsById(id)) {</span>
+<span class="fc" id="L143">      return ResponseEntity.status(HttpStatus.NOT_FOUND).body(&quot;record &quot; + id + &quot; not found&quot;);</span>
     }
 
-<span class="nc" id="L146">    recommendationRequestRepository.deleteById(id);</span>
-<span class="nc" id="L147">    return ResponseEntity.ok(&quot;record &quot; + id + &quot; deleted&quot;);</span>
+<span class="fc" id="L146">    recommendationRequestRepository.deleteById(id);</span>
+<span class="fc" id="L147">    return ResponseEntity.ok(&quot;record &quot; + id + &quot; deleted&quot;);</span>
   }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.15.202606040825</span></div></body></html>
