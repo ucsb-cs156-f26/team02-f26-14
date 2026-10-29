@@ -39,3 +39,5 @@ Default.parameters = {
     }),
   ],
 };
+
+// Storybook preview for the UCSBDiningCommonsMenuItem Create page.
