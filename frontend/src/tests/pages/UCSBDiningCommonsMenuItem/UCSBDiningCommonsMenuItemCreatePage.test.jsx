@@ -115,16 +115,15 @@ describe("UCSBDiningCommonsMenuItemCreatePage tests", () => {
     });
     await waitFor(() => {
       expect(mockToast).toHaveBeenCalledWith(
-      "New UCSBDiningCommonsMenuItem Created - id: 1 name: Pasta",
-    );
-  }); 
+        "New UCSBDiningCommonsMenuItem Created - id: 1 name: Pasta",
+      );
+    });
     await waitFor(() => {
       expect(invalidateSpy).toHaveBeenCalledWith({
-      queryKey: ["/api/UCSBDiningCommonsMenuItem/all"],
+        queryKey: ["/api/UCSBDiningCommonsMenuItem/all"],
+      });
+    });
   });
-});
-});
-
 
   test("does not submit invalid data", async () => {
     renderPage();
