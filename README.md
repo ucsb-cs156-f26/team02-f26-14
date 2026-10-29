@@ -23,7 +23,7 @@ Kanban Board: https://github.com/orgs/ucsb-cs156-f26/projects/39
 | UCSBDiningCommonsMenuItem | Heloisa Alcantara Furtado | HeloisaAlcantaraFurtado04 |
 | UCSBOrganization          | Aylin Lopez               | aylin268              |
 | RecommendationRequest     | Ryan Ramos                | R-R-R-N-U-C-S-B       |
-| MenuItemReview            | Krithih Haresamudra       | krithih               |
+| MenuItemReview            | Krithi Haresamudra       | krithih               |
 | HelpRequest               | Ray De Los Santos         | dlssantosray          |
 | Articles                  | Vishwath                  | VishwathS             |
 
