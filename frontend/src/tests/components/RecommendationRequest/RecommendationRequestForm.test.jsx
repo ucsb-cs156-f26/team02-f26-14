@@ -40,6 +40,31 @@ describe("RecommendationRequestForm", () => {
     expect(screen.getByLabelText(/Date Needed/i)).toBeInTheDocument();
     expect(screen.getByLabelText(/Completed/i)).toBeInTheDocument();
     expect(screen.queryByLabelText("ID")).not.toBeInTheDocument();
+    expect(
+      screen.getByTestId("RecommendationRequestForm-requesterEmail"),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByTestId("RecommendationRequestForm-professorEmail"),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByTestId("RecommendationRequestForm-explanation"),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByTestId("RecommendationRequestForm-dateRequested"),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByTestId("RecommendationRequestForm-dateNeeded"),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByTestId("RecommendationRequestForm-done"),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByTestId("RecommendationRequestForm-submit"),
+    ).toBeInTheDocument();
+    expect(
+      screen.getByTestId("RecommendationRequestForm-cancel"),
+    ).toBeInTheDocument();
+    expect(screen.getByText("Create")).toBeInTheDocument();
   });
 
   test("renders update form with initial contents and ID", () => {
@@ -101,11 +126,12 @@ describe("RecommendationRequestForm", () => {
     );
 
     fireEvent.change(screen.getByLabelText(/Requester Email/i), {
-      target: { value: "not-an-email" },
+      target: { value: "student@example.com extra" },
     });
     fireEvent.change(screen.getByLabelText(/Professor Email/i), {
-      target: { value: "also-not-an-email" },
+      target: { value: "prefix student@example.com" },
     });
+
     fireEvent.click(screen.getByTestId("RecommendationRequestForm-submit"));
 
     expect(
