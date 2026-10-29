@@ -18,14 +18,14 @@ GitHub Pages: https://ucsb-cs156-f26.github.io/team02-f26-14/
 
 Kanban Board: https://github.com/orgs/ucsb-cs156-f26/projects/39
 
-| Table                     | Name         | Github Id |
-|---------------------------|--------------|-----------|
-| UCSBDiningCommonsMenuItem |              |           |
-| UCSBOrganization          |              |           |
-| RecommendationRequest     |              |           |
-| MenuItemReview            |              |           |
-| HelpRequest               |              |           |
-| Articles                  |              |           |
+| Table                     | Name                      | GitHub ID             |
+|---------------------------|---------------------------|-----------------------|
+| UCSBDiningCommonsMenuItem | Heloisa Alcantara Furtado | HeloisaAlcantaraFurtado04 |
+| UCSBOrganization          | Aylin Lopez               | aylin268              |
+| RecommendationRequest     | Ryan Ramos                | R-R-R-N-U-C-S-B       |
+| MenuItemReview            | Krithih Haresamudra       | krithih               |
+| HelpRequest               | Ray De Los Santos         | dlssantosray          |
+| Articles                  | Vishwath                  | VishwathS             |
 
 Remember though, that in spite of these initial  assignments, it is still
 a team project.  Please help other team members to finish their work
