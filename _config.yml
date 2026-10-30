@@ -1,4 +1,3 @@
-
 title: Documentation
 description: >- # this means to ignore newlines until "baseurl:"
   When reviewing a PR for this repo, you can see what the documentation,
@@ -18,9 +17,7 @@ collections:
     permalink: /branches/:path/
 
 repo_name: "TBD"
-
-
 repo: ucsb-cs156-f26/team02-f26-14
 owner: ucsb-cs156-f26
 repo_name: team02-f26-14
-pull_requests: [{"author":{"id":"U_kgDOCxuhfQ","is_bot":false,"login":"R-R-R-N-U-C-S-B","name":""},"headRefName":"ryan-RecommendationRequest-indexPage","number":113,"title":"Add RecommendationRequest indexPage","url":"https://github.com/ucsb-cs156-f26/team02-f26-14/pull/113"},{"author":{"id":"U_kgDOCq4mvA","is_bot":false,"login":"dlssantosray","name":"Raymundo De Los Santos"},"headRefName":"ray-HelpRequest-plus-tests","number":112,"title":"ray - Add HelpRequest table and tests","url":"https://github.com/ucsb-cs156-f26/team02-f26-14/pull/112"}]
+pull_requests: [{"author":{"id":"U_kgDOCxuhfQ","is_bot":false,"login":"R-R-R-N-U-C-S-B","name":""},"headRefName":"ryan-RecommendationRequest-indexPage","number":113,"title":"Add RecommendationRequest indexPage","url":"https://github.com/ucsb-cs156-f26/team02-f26-14/pull/113"}]
