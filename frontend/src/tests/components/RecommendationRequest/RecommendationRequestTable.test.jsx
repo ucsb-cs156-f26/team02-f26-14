@@ -2,6 +2,7 @@ import { render, screen } from "@testing-library/react";
 import { recommendationRequestFixtures } from "fixtures/recommendationRequestFixtures";
 import RecommendationRequestTable from "main/components/RecommendationRequest/RecommendationRequestTable";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { MemoryRouter } from "react-router";
 
 describe("RecommendationRequestTable tests", () => {
   const queryClient = new QueryClient();
@@ -29,19 +30,18 @@ describe("RecommendationRequestTable tests", () => {
   const testId = "RecommendationRequestTable";
 
   test("renders empty table correctly", () => {
-    // arrange
     const recommendationRequests = [];
 
-    // act
     render(
       <QueryClientProvider client={queryClient}>
-        <RecommendationRequestTable
-          recommendationRequests={recommendationRequests}
-        />
+        <MemoryRouter>
+          <RecommendationRequestTable
+            recommendationRequests={recommendationRequests}
+          />
+        </MemoryRouter>
       </QueryClientProvider>,
     );
 
-    // assert
     expectedHeaders.forEach((headerText) => {
       expect(screen.getByText(headerText)).toBeInTheDocument();
     });
@@ -55,19 +55,18 @@ describe("RecommendationRequestTable tests", () => {
   });
 
   test("renders all expected headers and recommendation request data", () => {
-    // arrange
     const recommendationRequests = recommendationRequestFixtures.threeRequests;
 
-    // act
     render(
       <QueryClientProvider client={queryClient}>
-        <RecommendationRequestTable
-          recommendationRequests={recommendationRequests}
-        />
+        <MemoryRouter>
+          <RecommendationRequestTable
+            recommendationRequests={recommendationRequests}
+          />
+        </MemoryRouter>
       </QueryClientProvider>,
     );
 
-    // assert
     expectedHeaders.forEach((headerText) => {
       expect(screen.getByText(headerText)).toBeInTheDocument();
     });
