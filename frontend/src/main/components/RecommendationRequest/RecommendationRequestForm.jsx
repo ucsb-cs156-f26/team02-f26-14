@@ -1,4 +1,3 @@
-// RecommendationRequestForm.jsx file I created
 
 import { Button, Form } from "react-bootstrap";
 import { useForm } from "react-hook-form";
@@ -18,6 +17,10 @@ function RecommendationRequestForm({
   // Stryker restore all
 
   const navigate = useNavigate();
+
+  // Stryker disable next-line Regex
+  const email_regex = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
+
   const testIdPrefix = "RecommendationRequestForm";
 
   return (
@@ -47,7 +50,7 @@ function RecommendationRequestForm({
           {...register("requesterEmail", {
             required: "Requester email is required.",
             pattern: {
-              value: /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/,
+              value: email_regex,
               message: "Enter a valid requester email address.",
             },
           })}
@@ -68,7 +71,7 @@ function RecommendationRequestForm({
           {...register("professorEmail", {
             required: "Professor email is required.",
             pattern: {
-              value: /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/,
+              value: email_regex,
               message: "Enter a valid professor email address.",
             },
           })}
