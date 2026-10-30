@@ -1,4 +1,3 @@
-
 import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { BrowserRouter as Router } from "react-router";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
@@ -63,13 +62,9 @@ describe("HelpRequestForm tests", () => {
       expect(screen.getByText(headerText)).toBeInTheDocument();
     });
 
-    expect(
-      screen.queryByTestId(`${testId}-id`),
-    ).not.toBeInTheDocument();
+    expect(screen.queryByTestId(`${testId}-id`)).not.toBeInTheDocument();
 
-    expect(
-      screen.getByTestId(`${testId}-solved`),
-    ).not.toBeChecked();
+    expect(screen.getByTestId(`${testId}-solved`)).not.toBeChecked();
   });
 
   test("renders correctly when passing in initialContents", () => {
@@ -84,41 +79,33 @@ describe("HelpRequestForm tests", () => {
       expect(screen.getByText(headerText)).toBeInTheDocument();
     });
 
-    expect(
-      screen.getByTestId(`${testId}-id`),
-    ).toBeDisabled();
+    expect(screen.getByTestId(`${testId}-id`)).toBeDisabled();
 
-    expect(
-      screen.getByTestId(`${testId}-requesterEmail`),
-    ).toHaveValue("student@ucsb.edu");
+    expect(screen.getByTestId(`${testId}-requesterEmail`)).toHaveValue(
+      "student@ucsb.edu",
+    );
 
-    expect(
-      screen.getByTestId(`${testId}-teamId`),
-    ).toHaveValue("14");
+    expect(screen.getByTestId(`${testId}-teamId`)).toHaveValue("14");
 
-    expect(
-      screen.getByTestId(`${testId}-tableOrBreakoutRoom`),
-    ).toHaveValue("Table 4");
+    expect(screen.getByTestId(`${testId}-tableOrBreakoutRoom`)).toHaveValue(
+      "Table 4",
+    );
 
-    expect(
-      screen.getByTestId(`${testId}-requestTime`),
-    ).toHaveValue("2026-10-28T13:15");
+    expect(screen.getByTestId(`${testId}-requestTime`)).toHaveValue(
+      "2026-10-28T13:15",
+    );
 
-    expect(
-      screen.getByTestId(`${testId}-explanation`),
-    ).toHaveValue("Need help with Java.");
+    expect(screen.getByTestId(`${testId}-explanation`)).toHaveValue(
+      "Need help with Java.",
+    );
 
-    expect(
-      screen.getByTestId(`${testId}-solved`),
-    ).toBeChecked();
+    expect(screen.getByTestId(`${testId}-solved`)).toBeChecked();
   });
 
   test("Cancel navigates back", async () => {
     renderForm();
 
-    const cancelButton = screen.getByTestId(
-      `${testId}-cancel`,
-    );
+    const cancelButton = screen.getByTestId(`${testId}-cancel`);
 
     fireEvent.click(cancelButton);
 
@@ -132,29 +119,21 @@ describe("HelpRequestForm tests", () => {
 
     renderForm({ submitAction });
 
-    fireEvent.click(
-      screen.getByTestId(`${testId}-submit`),
-    );
+    fireEvent.click(screen.getByTestId(`${testId}-submit`));
 
     expect(
       await screen.findByText("Requester Email is required."),
     ).toBeInTheDocument();
 
-    expect(
-      screen.getByText("Team ID is required."),
-    ).toBeInTheDocument();
+    expect(screen.getByText("Team ID is required.")).toBeInTheDocument();
 
     expect(
       screen.getByText("Table or Breakout Room is required."),
     ).toBeInTheDocument();
 
-    expect(
-      screen.getByText("Request Time is required."),
-    ).toBeInTheDocument();
+    expect(screen.getByText("Request Time is required.")).toBeInTheDocument();
 
-    expect(
-      screen.getByText("Explanation is required."),
-    ).toBeInTheDocument();
+    expect(screen.getByText("Explanation is required.")).toBeInTheDocument();
 
     expect(submitAction).not.toHaveBeenCalled();
   });
@@ -164,45 +143,35 @@ describe("HelpRequestForm tests", () => {
 
     renderForm({ submitAction });
 
-    fireEvent.change(
-      screen.getByTestId(`${testId}-requesterEmail`),
-      { target: { value: "   " } },
-    );
+    fireEvent.change(screen.getByTestId(`${testId}-requesterEmail`), {
+      target: { value: "   " },
+    });
 
-    fireEvent.change(
-      screen.getByTestId(`${testId}-teamId`),
-      { target: { value: "   " } },
-    );
+    fireEvent.change(screen.getByTestId(`${testId}-teamId`), {
+      target: { value: "   " },
+    });
 
-    fireEvent.change(
-      screen.getByTestId(`${testId}-tableOrBreakoutRoom`),
-      { target: { value: "   " } },
-    );
+    fireEvent.change(screen.getByTestId(`${testId}-tableOrBreakoutRoom`), {
+      target: { value: "   " },
+    });
 
-    fireEvent.change(
-      screen.getByTestId(`${testId}-explanation`),
-      { target: { value: "   " } },
-    );
+    fireEvent.change(screen.getByTestId(`${testId}-explanation`), {
+      target: { value: "   " },
+    });
 
-    fireEvent.click(
-      screen.getByTestId(`${testId}-submit`),
-    );
+    fireEvent.click(screen.getByTestId(`${testId}-submit`));
 
     expect(
       await screen.findByText("Requester Email is required."),
     ).toBeInTheDocument();
 
-    expect(
-      screen.getByText("Team ID is required."),
-    ).toBeInTheDocument();
+    expect(screen.getByText("Team ID is required.")).toBeInTheDocument();
 
     expect(
       screen.getByText("Table or Breakout Room is required."),
     ).toBeInTheDocument();
 
-    expect(
-      screen.getByText("Explanation is required."),
-    ).toBeInTheDocument();
+    expect(screen.getByText("Explanation is required.")).toBeInTheDocument();
 
     expect(submitAction).not.toHaveBeenCalled();
   });
@@ -212,38 +181,29 @@ describe("HelpRequestForm tests", () => {
 
     renderForm({ submitAction });
 
-    fireEvent.change(
-      screen.getByTestId(`${testId}-requesterEmail`),
-      { target: { value: "student@ucsb.edu" } },
-    );
+    fireEvent.change(screen.getByTestId(`${testId}-requesterEmail`), {
+      target: { value: "student@ucsb.edu" },
+    });
 
-    fireEvent.change(
-      screen.getByTestId(`${testId}-teamId`),
-      { target: { value: "14" } },
-    );
+    fireEvent.change(screen.getByTestId(`${testId}-teamId`), {
+      target: { value: "14" },
+    });
 
-    fireEvent.change(
-      screen.getByTestId(`${testId}-tableOrBreakoutRoom`),
-      { target: { value: "Table 4" } },
-    );
+    fireEvent.change(screen.getByTestId(`${testId}-tableOrBreakoutRoom`), {
+      target: { value: "Table 4" },
+    });
 
-    fireEvent.change(
-      screen.getByTestId(`${testId}-requestTime`),
-      { target: { value: "2026-10-28T13:15" } },
-    );
+    fireEvent.change(screen.getByTestId(`${testId}-requestTime`), {
+      target: { value: "2026-10-28T13:15" },
+    });
 
-    fireEvent.change(
-      screen.getByTestId(`${testId}-explanation`),
-      { target: { value: "Need help with Java." } },
-    );
+    fireEvent.change(screen.getByTestId(`${testId}-explanation`), {
+      target: { value: "Need help with Java." },
+    });
 
-    fireEvent.click(
-      screen.getByTestId(`${testId}-solved`),
-    );
+    fireEvent.click(screen.getByTestId(`${testId}-solved`));
 
-    fireEvent.click(
-      screen.getByTestId(`${testId}-submit`),
-    );
+    fireEvent.click(screen.getByTestId(`${testId}-submit`));
 
     await waitFor(() => {
       expect(submitAction).toHaveBeenCalledWith(
