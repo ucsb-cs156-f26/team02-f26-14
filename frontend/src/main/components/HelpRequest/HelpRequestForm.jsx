@@ -19,7 +19,7 @@ function HelpRequestForm({
   const testIdPrefix = "HelpRequestForm";
 
   const requiredText = (label) => ({
-    validate: (value) => value?.trim().length > 0 || `${label} is required.`,
+    validate: (value) => value.trim().length > 0 || `${label} is required.`,
   });
 
   return (
