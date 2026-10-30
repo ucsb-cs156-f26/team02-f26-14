@@ -19,6 +19,10 @@ import PlaceholderIndexPage from "main/pages/Placeholder/PlaceholderIndexPage";
 import PlaceholderCreatePage from "main/pages/Placeholder/PlaceholderCreatePage";
 import PlaceholderEditPage from "main/pages/Placeholder/PlaceholderEditPage";
 
+import RecommendationRequestIndexPage from "main/pages/RecommendationRequest/RecommendationRequestIndexPage";
+import RecommendationRequestCreatePage from "main/pages/RecommendationRequest/RecommendationRequestCreatePage";
+import RecommendationRequestEditPage from "main/pages/RecommendationRequest/RecommendationRequestEditPage";
+
 import UCSBDiningCommonsMenuItemIndexPage from "main/pages/UCSBDiningCommonsMenuItem/UCSBDiningCommonsMenuItemIndexPage";
 import UCSBDiningCommonsMenuItemCreatePage from "main/pages/UCSBDiningCommonsMenuItem/UCSBDiningCommonsMenuItemCreatePage";
 import UCSBDiningCommonsMenuItemEditPage from "main/pages/UCSBDiningCommonsMenuItem/UCSBDiningCommonsMenuItemEditPage";
@@ -52,6 +56,11 @@ function App() {
           <Route exact path="/ucsbdates" element={<UCSBDatesIndexPage />} />
           <Route exact path="/restaurants" element={<RestaurantIndexPage />} />
           <Route exact path="/placeholder" element={<PlaceholderIndexPage />} />
+          <Route
+            exact
+            path="/recommendationrequest"
+            element={<RecommendationRequestIndexPage />}
+          />
           <Route
             exact
             path="/ucsborganization"
@@ -98,6 +107,17 @@ function App() {
 
           <Route
             exact
+            path="/recommendationrequest/edit/:id"
+            element={<RecommendationRequestEditPage />}
+          />
+          <Route
+            exact
+            path="/recommendationrequest/create"
+            element={<RecommendationRequestCreatePage />}
+          />
+
+          <Route
+            exact
             path="/ucsborganization/edit/:id"
             element={<UCSBOrganizationEditPage />}
           />
@@ -119,6 +139,7 @@ function App() {
           />
         </>
       )}
+
       {hasRole(currentUser, "ROLE_USER") && (
         <>
           <Route
@@ -128,6 +149,7 @@ function App() {
           />
         </>
       )}
+
       {hasRole(currentUser, "ROLE_ADMIN") && (
         <>
           <Route
@@ -142,11 +164,13 @@ function App() {
           />
         </>
       )}
+
       {hasRole(currentUser, "ROLE_USER") && (
         <>
           <Route exact path="/articles" element={<ArticlesIndexPage />} />
         </>
       )}
+
       {hasRole(currentUser, "ROLE_ADMIN") && (
         <>
           <Route
@@ -161,6 +185,7 @@ function App() {
           />
         </>
       )}
+
       {hasRole(currentUser, "ROLE_USER") && (
         <>
           <Route
@@ -170,6 +195,7 @@ function App() {
           />
         </>
       )}
+
       {hasRole(currentUser, "ROLE_ADMIN") && (
         <>
           <Route
@@ -184,11 +210,13 @@ function App() {
           />
         </>
       )}
+
       {hasRole(currentUser, "ROLE_USER") && (
         <>
           <Route exact path="/articles" element={<ArticlesIndexPage />} />
         </>
       )}
+
       {hasRole(currentUser, "ROLE_ADMIN") && (
         <>
           <Route
@@ -203,6 +231,7 @@ function App() {
           />
         </>
       )}
+
       {hasRole(currentUser, "ROLE_USER") && (
         <>
           <Route
@@ -212,6 +241,7 @@ function App() {
           />
         </>
       )}
+
       {hasRole(currentUser, "ROLE_ADMIN") && (
         <>
           <Route
