@@ -5,6 +5,7 @@ import { helpRequestFixtures } from "fixtures/helpRequestFixtures";
 export default {
   title: "components/HelpRequest/HelpRequestForm",
   component: HelpRequestForm,
+  tags: ["autodocs"],
 };
 
 const Template = (args) => {
