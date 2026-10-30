@@ -1,4 +1,3 @@
-
 import { Button, Form } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router";
@@ -42,18 +41,13 @@ function HelpRequestForm({
       )}
 
       <Form.Group className="mb-3">
-        <Form.Label htmlFor="requesterEmail">
-          Requester Email
-        </Form.Label>
+        <Form.Label htmlFor="requesterEmail">Requester Email</Form.Label>
         <Form.Control
           data-testid={testIdPrefix + "-requesterEmail"}
           id="requesterEmail"
           type="email"
           isInvalid={Boolean(errors.requesterEmail)}
-          {...register(
-            "requesterEmail",
-            requiredText("Requester Email"),
-          )}
+          {...register("requesterEmail", requiredText("Requester Email"))}
         />
         <Form.Control.Feedback type="invalid">
           {errors.requesterEmail?.message}
@@ -94,9 +88,7 @@ function HelpRequestForm({
       </Form.Group>
 
       <Form.Group className="mb-3">
-        <Form.Label htmlFor="requestTime">
-          Request Time
-        </Form.Label>
+        <Form.Label htmlFor="requestTime">Request Time</Form.Label>
         <Form.Control
           data-testid={testIdPrefix + "-requestTime"}
           id="requestTime"
@@ -112,19 +104,14 @@ function HelpRequestForm({
       </Form.Group>
 
       <Form.Group className="mb-3">
-        <Form.Label htmlFor="explanation">
-          Explanation
-        </Form.Label>
+        <Form.Label htmlFor="explanation">Explanation</Form.Label>
         <Form.Control
           as="textarea"
           rows={3}
           data-testid={testIdPrefix + "-explanation"}
           id="explanation"
           isInvalid={Boolean(errors.explanation)}
-          {...register(
-            "explanation",
-            requiredText("Explanation"),
-          )}
+          {...register("explanation", requiredText("Explanation"))}
         />
         <Form.Control.Feedback type="invalid">
           {errors.explanation?.message}
@@ -141,10 +128,7 @@ function HelpRequestForm({
         />
       </Form.Group>
 
-      <Button
-        type="submit"
-        data-testid={testIdPrefix + "-submit"}
-      >
+      <Button type="submit" data-testid={testIdPrefix + "-submit"}>
         {buttonLabel}
       </Button>
 
