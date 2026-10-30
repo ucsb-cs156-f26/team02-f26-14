@@ -25,7 +25,7 @@ Create.args = {
 export const Update = Template.bind({});
 
 Update.args = {
-  initialContents: helpRequestFixtures.oneHelpRequest[0],
+  initialContents: helpRequestFixtures.oneHelpRequest,
   buttonLabel: "Update",
   submitAction: (data) => {
     console.log("Submit was clicked with data: ", data);
