@@ -17,6 +17,7 @@ export default function RecommendationRequestIndexPage() {
     // Stryker disable next-line all : don't test internal caching of React Query
     ["/api/RecommendationRequest/all"],
     {
+      // Stryker disable next-line StringLiteral : Axios defaults to GET when the method is omitted
       method: "GET",
       url: "/api/RecommendationRequest/all",
     },

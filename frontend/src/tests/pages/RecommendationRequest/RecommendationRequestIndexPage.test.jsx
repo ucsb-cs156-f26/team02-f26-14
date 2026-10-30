@@ -119,14 +119,37 @@ describe("RecommendationRequestIndexPage tests", () => {
       "href",
       "/recommendationrequest/create",
     );
+    expect(createButton).toHaveStyle({ float: "right" });
 
-    expect(
-      await screen.findByTestId(`${testId}-cell-row-0-col-Edit-button`),
-    ).toBeInTheDocument();
+    const editButton = await screen.findByTestId(
+      `${testId}-cell-row-0-col-Edit-button`,
+    );
 
-    expect(
-      screen.getByTestId(`${testId}-cell-row-0-col-Delete-button`),
-    ).toBeInTheDocument();
+    const deleteButton = screen.getByTestId(
+      `${testId}-cell-row-0-col-Delete-button`,
+    );
+
+    expect(editButton).toBeInTheDocument();
+    expect(editButton).toHaveClass("btn-primary");
+
+    expect(deleteButton).toBeInTheDocument();
+    expect(deleteButton).toHaveClass("btn-danger");
+  });
+
+  test("starts with an empty table while recommendation requests are loading", async () => {
+    setupUserOnly();
+
+    axiosMock
+      .onGet("/api/RecommendationRequest/all")
+      .reply(() => new Promise(() => {}));
+
+    renderPage();
+
+    await waitFor(() => {
+      expect(screen.getByTestId(testId)).toBeInTheDocument();
+    });
+
+    expect(screen.queryByTestId(`${testId}-row-0`)).not.toBeInTheDocument();
   });
 
   test("admin can navigate to the edit page for a recommendation request", async () => {
