@@ -12,7 +12,6 @@ export default function RecommendationRequestEditPage({ storybook = false }) {
     _error,
     _status,
   } = useBackend([`/api/RecommendationRequest?id=${id}`], {
-    method: "GET",
     url: "/api/RecommendationRequest",
     params: { id },
   });
