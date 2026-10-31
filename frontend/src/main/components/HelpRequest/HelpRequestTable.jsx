@@ -9,14 +9,14 @@ export default function HelpRequestTable({ helpRequests, currentUser }) {
   const navigate = useNavigate();
 
   const editCallback = (cell) => {
-    navigate(`/helprequests/edit/${cell.row.original.id}`);
+    navigate(`/helprequest/edit/${cell.row.original.id}`);
   };
 
   // Stryker disable all : hard to test for query caching
   const deleteMutation = useBackendMutation(
     (cell) => ({
       method: "DELETE",
-      url: "/api/helprequests",
+      url: "/api/helprequest",
       params: { id: cell.row.original.id },
     }),
     {
@@ -24,7 +24,7 @@ export default function HelpRequestTable({ helpRequests, currentUser }) {
         console.log("HelpRequest deleted successfully");
       },
     },
-    ["/api/helprequests/all"],
+    ["/api/helprequest/all"],
   );
   // Stryker restore all
 
