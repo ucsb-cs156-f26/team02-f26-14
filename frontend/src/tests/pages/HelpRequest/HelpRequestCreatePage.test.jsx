@@ -96,6 +96,8 @@ describe("HelpRequestCreatePage tests", () => {
     const request = axiosMock.history.post[0];
 
     expect(request.url).toBe("/api/helprequest/post");
+    expect(request.method).toBe("post");
+    expect(request.params.requestTime).toBe("2026-10-28T13:15");
     expect(request.params).toMatchObject({
       requesterEmail: "student1@ucsb.edu",
       teamId: "14",

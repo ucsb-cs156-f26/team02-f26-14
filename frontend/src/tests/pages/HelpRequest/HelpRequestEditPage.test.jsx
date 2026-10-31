@@ -89,6 +89,24 @@ describe("HelpRequestEditPage tests", () => {
     await waitFor(() => {
       expect(axiosMock.history.put.length).toBe(1);
     });
+
+    const request = axiosMock.history.put[0];
+
+    expect(request.url).toBe("/api/helprequest");
+    expect(request.method).toBe("put");
+    expect(request.params).toEqual({
+      id: helpRequestFixtures.oneHelpRequest.id,
+    });
+
+    expect(JSON.parse(request.data)).toEqual({
+      requesterEmail: helpRequestFixtures.oneHelpRequest.requesterEmail,
+      teamId: helpRequestFixtures.oneHelpRequest.teamId,
+      tableOrBreakoutRoom:
+        helpRequestFixtures.oneHelpRequest.tableOrBreakoutRoom,
+      requestTime: helpRequestFixtures.oneHelpRequest.requestTime,
+      explanation: helpRequestFixtures.oneHelpRequest.explanation,
+      solved: helpRequestFixtures.oneHelpRequest.solved,
+    });
   });
 
   test("Redirects to Index after successful update", async () => {

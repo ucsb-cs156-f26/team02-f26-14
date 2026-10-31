@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react";
+import { render, screen, waitFor } from "@testing-library/react";
 import HelpRequestIndexPage from "main/pages/HelpRequest/HelpRequestIndexPage";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { MemoryRouter } from "react-router";
@@ -48,6 +48,15 @@ describe("HelpRequestIndexPage tests", () => {
 
     expect(screen.getByTestId("HelpRequestTable")).toBeInTheDocument();
 
+    await waitFor(() => {
+      expect(
+        axiosMock.history.get.some(
+          (request) =>
+            request.url === "/api/helprequest/all" && request.method === "get",
+        ),
+      ).toBe(true);
+    });
+
     expect(screen.queryByText("Create HelpRequest")).not.toBeInTheDocument();
   });
 
@@ -63,5 +72,6 @@ describe("HelpRequestIndexPage tests", () => {
 
     expect(createButton).toBeInTheDocument();
     expect(createButton).toHaveAttribute("href", "/helprequest/create");
+    expect(createButton).toHaveStyle({ float: "right" });
   });
 });
