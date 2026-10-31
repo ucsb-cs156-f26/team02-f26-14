@@ -11,14 +11,11 @@ export default function RecommendationRequestEditPage({ storybook = false }) {
     data: recommendationRequest,
     _error,
     _status,
-  } = useBackend(
-    [`/api/RecommendationRequest?id=${id}`],
-    {
-      method: "GET",
-      url: "/api/RecommendationRequest",
-      params: { id },
-    },
-  );
+  } = useBackend([`/api/RecommendationRequest?id=${id}`], {
+    method: "GET",
+    url: "/api/RecommendationRequest",
+    params: { id },
+  });
 
   const objectToAxiosPutParams = (request) => ({
     url: "/api/RecommendationRequest",
@@ -38,11 +35,9 @@ export default function RecommendationRequestEditPage({ storybook = false }) {
     toast(`RecommendationRequest Updated - id: ${request.id}`);
   };
 
-  const mutation = useBackendMutation(
-    objectToAxiosPutParams,
-    { onSuccess },
-    [`/api/RecommendationRequest?id=${id}`],
-  );
+  const mutation = useBackendMutation(objectToAxiosPutParams, { onSuccess }, [
+    `/api/RecommendationRequest?id=${id}`,
+  ]);
 
   const { isSuccess } = mutation;
 

@@ -32,8 +32,12 @@ vi.mock("react-router", async (importOriginal) => {
 
 let axiosMock;
 
+const queryClient = new QueryClient();
+
 describe("RecommendationRequestEditPage tests", () => {
   beforeEach(() => {
+    queryClient.clear();
+
     axiosMock = new AxiosMockAdapter(axios);
     axiosMock.reset();
     axiosMock.resetHistory();
@@ -52,10 +56,10 @@ describe("RecommendationRequestEditPage tests", () => {
     axiosMock.restore();
   });
 
-  const queryClient = new QueryClient();
-
   test("Renders header when backend does not return data", async () => {
-    axiosMock.onGet("/api/RecommendationRequest", { params: { id: 17 } }).timeout();
+    axiosMock
+      .onGet("/api/RecommendationRequest", { params: { id: 17 } })
+      .timeout();
 
     render(
       <QueryClientProvider client={queryClient}>
@@ -66,19 +70,24 @@ describe("RecommendationRequestEditPage tests", () => {
     );
 
     await screen.findByText("Edit RecommendationRequest");
-    expect(screen.queryByTestId("RecommendationRequestForm-id")).not.toBeInTheDocument();
+
+    expect(
+      screen.queryByTestId("RecommendationRequestForm-id"),
+    ).not.toBeInTheDocument();
   });
 
   test("Loads and updates a RecommendationRequest", async () => {
-    axiosMock.onGet("/api/RecommendationRequest", { params: { id: 17 } }).reply(200, {
-      id: 17,
-      requesterEmail: "student@example.com",
-      professorEmail: "professor@example.com",
-      explanation: "Requesting a recommendation",
-      dateRequested: "2026-10-21T10:00",
-      dateNeeded: "2026-11-15T00:00",
-      done: false,
-    });
+    axiosMock
+      .onGet("/api/RecommendationRequest", { params: { id: 17 } })
+      .reply(200, {
+        id: 17,
+        requesterEmail: "student@example.com",
+        professorEmail: "professor@example.com",
+        explanation: "Requesting a recommendation",
+        dateRequested: "2026-10-21T10:00",
+        dateNeeded: "2026-11-15T00:00",
+        done: false,
+      });
 
     axiosMock.onPut("/api/RecommendationRequest").reply(200, {
       id: 17,
@@ -90,6 +99,8 @@ describe("RecommendationRequestEditPage tests", () => {
       done: true,
     });
 
+    const invalidateQueriesSpy = vi.spyOn(queryClient, "invalidateQueries");
+
     render(
       <QueryClientProvider client={queryClient}>
         <MemoryRouter>
@@ -100,8 +111,15 @@ describe("RecommendationRequestEditPage tests", () => {
 
     await screen.findByTestId("RecommendationRequestForm-id");
 
+    // Verify that the expected GET query key was registered.
+    expect(
+      queryClient.getQueryState(["/api/RecommendationRequest?id=17"]),
+    ).toBeDefined();
+
     const id = screen.getByTestId("RecommendationRequestForm-id");
-    const explanation = screen.getByTestId("RecommendationRequestForm-explanation");
+    const explanation = screen.getByTestId(
+      "RecommendationRequestForm-explanation",
+    );
     const done = screen.getByTestId("RecommendationRequestForm-done");
     const submit = screen.getByTestId("RecommendationRequestForm-submit");
 
@@ -114,10 +132,46 @@ describe("RecommendationRequestEditPage tests", () => {
     fireEvent.click(done);
     fireEvent.click(submit);
 
-    await waitFor(() => expect(mockToast).toHaveBeenCalled());
+    await waitFor(() => {
+      expect(mockToast).toHaveBeenCalledWith(
+        "RecommendationRequest Updated - id: 17",
+      );
+    });
+
+    // Verify the GET request used the expected URL, method, and ID.
+    const recommendationRequestGet = axiosMock.history.get.find(
+      (request) => request.url === "/api/RecommendationRequest",
+    );
+
+    expect(recommendationRequestGet).toBeDefined();
+    expect(recommendationRequestGet.method).toBe("get");
+    expect(recommendationRequestGet.params).toEqual({ id: 17 });
+
+    // Verify the PUT request used the expected ID.
+    expect(axiosMock.history.put).toHaveLength(1);
+    expect(axiosMock.history.put[0].params).toEqual({ id: 17 });
+
+    // Verify the PUT request sent all editable fields.
+    expect(JSON.parse(axiosMock.history.put[0].data)).toEqual({
+      requesterEmail: "student@example.com",
+      professorEmail: "professor@example.com",
+      explanation: "Updated recommendation request",
+      dateRequested: "2026-10-21T10:00",
+      dateNeeded: "2026-11-15T00:00",
+      done: true,
+    });
+
+    // Verify the mutation invalidated the expected query key.
+    await waitFor(() => {
+      expect(invalidateQueriesSpy).toHaveBeenCalledWith({
+        queryKey: ["/api/RecommendationRequest?id=17"],
+      });
+    });
+
     expect(mockNavigate).toHaveBeenCalledWith({
       to: "/recommendationrequest",
     });
-    expect(axiosMock.history.put.length).toBe(1);
+
+    invalidateQueriesSpy.mockRestore();
   });
 });
