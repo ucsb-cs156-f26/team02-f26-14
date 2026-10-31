@@ -130,4 +130,108 @@ describe("HelpRequestEditPage tests", () => {
 
     expect(await screen.findByText("HelpRequest Index")).toBeInTheDocument();
   });
+
+  test("Populates the form with existing HelpRequest values", async () => {
+    setup();
+    renderPage();
+
+    expect(await screen.findByTestId("HelpRequestForm-id")).toHaveValue("1");
+    expect(screen.getByTestId("HelpRequestForm-requesterEmail")).toHaveValue(
+      helpRequestFixtures.oneHelpRequest.requesterEmail,
+    );
+    expect(screen.getByTestId("HelpRequestForm-teamId")).toHaveValue("14");
+    expect(
+      screen.getByTestId("HelpRequestForm-tableOrBreakoutRoom"),
+    ).toHaveValue("Table");
+    expect(screen.getByTestId("HelpRequestForm-requestTime")).toHaveValue(
+      "2026-10-28T13:15",
+    );
+    expect(screen.getByTestId("HelpRequestForm-explanation")).toHaveValue(
+      "Need help fixing a Java error.",
+    );
+    expect(screen.getByTestId("HelpRequestForm-solved")).not.toBeChecked();
+  });
+
+  test("Sends modified field values when updating", async () => {
+    setup();
+    axiosMock
+      .onPut("/api/HelpRequest")
+      .reply(200, helpRequestFixtures.oneHelpRequest);
+
+    renderPage(true);
+
+    const explanation = await screen.findByTestId(
+      "HelpRequestForm-explanation",
+    );
+
+    await userEvent.clear(explanation);
+    await userEvent.type(explanation, "Updated explanation");
+
+    await userEvent.click(screen.getByRole("button", { name: "Update" }));
+
+    await waitFor(() => {
+      expect(axiosMock.history.put).toHaveLength(1);
+    });
+
+    expect(JSON.parse(axiosMock.history.put[0].data).explanation).toBe(
+      "Updated explanation",
+    );
+  });
+
+  test("Rejects invalid data without sending PUT", async () => {
+    setup();
+    renderPage();
+
+    const explanation = await screen.findByTestId(
+      "HelpRequestForm-explanation",
+    );
+
+    await userEvent.clear(explanation);
+    await userEvent.click(screen.getByRole("button", { name: "Update" }));
+
+    expect(
+      await screen.findByText("Explanation is required."),
+    ).toBeInTheDocument();
+
+    expect(axiosMock.history.put).toHaveLength(0);
+  });
+
+  test("Cancel returns to the previous page without saving", async () => {
+    setup();
+
+    const queryClient = new QueryClient({
+      defaultOptions: {
+        queries: { retry: false },
+      },
+    });
+
+    render(
+      <QueryClientProvider client={queryClient}>
+        <MemoryRouter
+          initialEntries={["/previous", "/helprequest/edit/1"]}
+          initialIndex={1}
+        >
+          <Routes>
+            <Route path="/previous" element={<div>Previous Page</div>} />
+            <Route
+              path="/helprequest/edit/:id"
+              element={<HelpRequestEditPage />}
+            />
+          </Routes>
+        </MemoryRouter>
+      </QueryClientProvider>,
+    );
+
+    const explanation = await screen.findByTestId(
+      "HelpRequestForm-explanation",
+    );
+
+    await userEvent.clear(explanation);
+    await userEvent.type(explanation, "Unsaved changes");
+
+    await userEvent.click(screen.getByRole("button", { name: "Cancel" }));
+
+    expect(await screen.findByText("Previous Page")).toBeInTheDocument();
+    expect(axiosMock.history.put).toHaveLength(0);
+  });
 });
