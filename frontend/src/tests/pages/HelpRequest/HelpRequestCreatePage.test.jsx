@@ -25,7 +25,7 @@ describe("HelpRequestCreatePage tests", () => {
       .reply(200, systemInfoFixtures.showingNeither);
 
     axiosMock
-      .onPost("/api/helprequest/post")
+      .onPost("/api/HelpRequest/post")
       .reply(200, helpRequestFixtures.oneHelpRequest);
   };
 
@@ -95,7 +95,7 @@ describe("HelpRequestCreatePage tests", () => {
 
     const request = axiosMock.history.post[0];
 
-    expect(request.url).toBe("/api/helprequest/post");
+    expect(request.url).toBe("/api/HelpRequest/post");
     expect(request.method).toBe("post");
     expect(request.params.requestTime).toBe("2026-10-28T13:15");
     expect(request.params).toMatchObject({

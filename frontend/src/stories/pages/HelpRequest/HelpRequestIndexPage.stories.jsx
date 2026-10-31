@@ -25,7 +25,7 @@ Empty.parameters = {
     http.get("/api/currentUser", () =>
       HttpResponse.json(apiCurrentUserFixtures.userOnly),
     ),
-    http.get("/api/helprequest/all", () => HttpResponse.json([])),
+    http.get("/api/HelpRequest/all", () => HttpResponse.json([])),
   ],
 };
 
@@ -36,7 +36,7 @@ ThreeItemsOrdinaryUser.parameters = {
     http.get("/api/currentUser", () =>
       HttpResponse.json(apiCurrentUserFixtures.userOnly),
     ),
-    http.get("/api/helprequest/all", () =>
+    http.get("/api/HelpRequest/all", () =>
       HttpResponse.json(helpRequestFixtures.threeHelpRequest),
     ),
   ],
@@ -49,10 +49,10 @@ ThreeItemsAdminUser.parameters = {
     http.get("/api/currentUser", () =>
       HttpResponse.json(apiCurrentUserFixtures.adminUser),
     ),
-    http.get("/api/helprequest/all", () =>
+    http.get("/api/HelpRequest/all", () =>
       HttpResponse.json(helpRequestFixtures.threeHelpRequest),
     ),
-    http.delete("/api/helprequest", () =>
+    http.delete("/api/HelpRequest", () =>
       HttpResponse.json({}, { status: 200 }),
     ),
   ],

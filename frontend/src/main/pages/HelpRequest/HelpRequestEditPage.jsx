@@ -7,15 +7,15 @@ import { toast } from "react-toastify";
 export default function HelpRequestEditPage({ storybook = false }) {
   const { id } = useParams();
 
-  const { data: helpRequest } = useBackend([`/api/helprequest?id=${id}`], {
+  const { data: helpRequest } = useBackend([`/api/HelpRequest?id=${id}`], {
     method: "GET",
-    url: "/api/helprequest",
+    url: "/api/HelpRequest",
     params: { id },
   });
 
   const mutation = useBackendMutation(
     (data) => ({
-      url: "/api/helprequest",
+      url: "/api/HelpRequest",
       method: "PUT",
       params: { id: data.id },
       data: {
@@ -32,7 +32,7 @@ export default function HelpRequestEditPage({ storybook = false }) {
         toast(`HelpRequest Updated - id: ${updated.id}`);
       },
     },
-    [`/api/helprequest?id=${id}`],
+    [`/api/HelpRequest?id=${id}`],
   );
 
   if (mutation.isSuccess && !storybook) {

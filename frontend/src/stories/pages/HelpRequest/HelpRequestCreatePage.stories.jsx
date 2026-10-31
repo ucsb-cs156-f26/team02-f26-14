@@ -22,7 +22,7 @@ Default.parameters = {
     http.get("/api/systemInfo", () =>
       HttpResponse.json(systemInfoFixtures.showingNeither),
     ),
-    http.post("/api/helprequest/post", () =>
+    http.post("/api/HelpRequest/post", () =>
       HttpResponse.json(helpRequestFixtures.oneHelpRequest),
     ),
   ],

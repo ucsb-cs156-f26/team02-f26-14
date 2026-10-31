@@ -25,7 +25,7 @@ describe("HelpRequestEditPage tests", () => {
       .reply(200, systemInfoFixtures.showingNeither);
 
     axiosMock
-      .onGet("/api/helprequest")
+      .onGet("/api/HelpRequest")
       .reply(200, helpRequestFixtures.oneHelpRequest);
   };
 
@@ -65,7 +65,7 @@ describe("HelpRequestEditPage tests", () => {
       expect(
         axiosMock.history.get.some(
           (request) =>
-            request.url === "/api/helprequest" && request.params?.id === "1",
+            request.url === "/api/HelpRequest" && request.params?.id === "1",
         ),
       ).toBe(true);
     });
@@ -75,7 +75,7 @@ describe("HelpRequestEditPage tests", () => {
     setup();
 
     axiosMock
-      .onPut("/api/helprequest")
+      .onPut("/api/HelpRequest")
       .reply(200, helpRequestFixtures.oneHelpRequest);
 
     renderPage(true);
@@ -92,7 +92,7 @@ describe("HelpRequestEditPage tests", () => {
 
     const request = axiosMock.history.put[0];
 
-    expect(request.url).toBe("/api/helprequest");
+    expect(request.url).toBe("/api/HelpRequest");
     expect(request.method).toBe("put");
     expect(request.params).toEqual({
       id: helpRequestFixtures.oneHelpRequest.id,
@@ -113,7 +113,7 @@ describe("HelpRequestEditPage tests", () => {
     setup();
 
     axiosMock
-      .onPut("/api/helprequest")
+      .onPut("/api/HelpRequest")
       .reply(200, helpRequestFixtures.oneHelpRequest);
 
     renderPage(false);

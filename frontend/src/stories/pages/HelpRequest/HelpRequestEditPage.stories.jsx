@@ -22,10 +22,10 @@ Default.parameters = {
     http.get("/api/systemInfo", () =>
       HttpResponse.json(systemInfoFixtures.showingNeither),
     ),
-    http.get("/api/helprequest", () =>
+    http.get("/api/HelpRequest", () =>
       HttpResponse.json(helpRequestFixtures.oneHelpRequest),
     ),
-    http.put("/api/helprequest", () =>
+    http.put("/api/HelpRequest", () =>
       HttpResponse.json(helpRequestFixtures.oneHelpRequest),
     ),
   ],
