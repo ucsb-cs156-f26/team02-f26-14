@@ -44,10 +44,7 @@ describe("HelpRequestEditPage tests", () => {
               path="/helprequest/edit/:id"
               element={<HelpRequestEditPage storybook={storybook} />}
             />
-            <Route
-              path="/helprequest"
-              element={<div>HelpRequest Index</div>}
-            />
+            <Route path="/helprequest" element={<div>HelpRequest Index</div>} />
           </Routes>
         </MemoryRouter>
       </QueryClientProvider>,
