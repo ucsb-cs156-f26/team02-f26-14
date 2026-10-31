@@ -4,6 +4,7 @@ import static com.microsoft.playwright.assertions.PlaywrightAssertions.assertTha
 
 import edu.ucsb.cs156.example.WebTestCase;
 import java.net.URI;
+import java.util.regex.Pattern;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -53,5 +54,16 @@ public class UCSBDiningCommonsMenuItemWebIT extends WebTestCase {
 
     // Check that the new menu item appears in the table
     assertThat(page.getByTestId("UCSBDiningCommonsMenuItemTable").getByText(itemName)).isVisible();
+  }
+
+  @Test
+  public void navbar_link_goes_to_menu_item_index_page() throws Exception {
+
+    setupUser(true);
+
+    // Same locator the Gradescope autograder uses to find the navbar link
+    page.getByText(Pattern.compile("item(?!.*review)", Pattern.CASE_INSENSITIVE)).click();
+
+    assertThat(page.getByText("UCSB Dining Commons Menu Items")).isVisible();
   }
 }
