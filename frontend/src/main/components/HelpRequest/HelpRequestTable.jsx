@@ -16,7 +16,7 @@ export default function HelpRequestTable({ helpRequests, currentUser }) {
   const deleteMutation = useBackendMutation(
     (cell) => ({
       method: "DELETE",
-      url: "/api/helprequest",
+      url: "/api/HelpRequest",
       params: { id: cell.row.original.id },
     }),
     {
@@ -24,7 +24,7 @@ export default function HelpRequestTable({ helpRequests, currentUser }) {
         console.log("HelpRequest deleted successfully");
       },
     },
-    ["/api/helprequest/all"],
+    ["/api/HelpRequest/all"],
   );
   // Stryker restore all
 

@@ -22,7 +22,7 @@ describe("HelpRequestIndexPage tests", () => {
       .reply(200, systemInfoFixtures.showingNeither);
 
     axiosMock
-      .onGet("/api/helprequest/all")
+      .onGet("/api/HelpRequest/all")
       .reply(200, helpRequestFixtures.threeHelpRequest);
   };
 
@@ -52,7 +52,7 @@ describe("HelpRequestIndexPage tests", () => {
       expect(
         axiosMock.history.get.some(
           (request) =>
-            request.url === "/api/helprequest/all" && request.method === "get",
+            request.url === "/api/HelpRequest/all" && request.method === "get",
         ),
       ).toBe(true);
     });

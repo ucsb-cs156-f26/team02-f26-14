@@ -88,7 +88,7 @@ describe("HelpRequest mutation coverage", () => {
         solved: false,
       }),
     ).toEqual({
-      url: "/api/helprequest/post",
+      url: "/api/HelpRequest/post",
       method: "POST",
       params: {
         requesterEmail: "student@ucsb.edu",
@@ -100,7 +100,7 @@ describe("HelpRequest mutation coverage", () => {
       },
     });
 
-    expect(invalidationKeys).toEqual(["/api/helprequest/all"]);
+    expect(invalidationKeys).toEqual(["/api/HelpRequest/all"]);
     expect(options.onSuccess).toEqual(expect.any(Function));
 
     options.onSuccess({ id: 42 });
@@ -132,9 +132,9 @@ describe("HelpRequest mutation coverage", () => {
       "/helprequest/edit/1",
     );
 
-    expect(useBackend).toHaveBeenCalledWith(["/api/helprequest?id=1"], {
+    expect(useBackend).toHaveBeenCalledWith(["/api/HelpRequest?id=1"], {
       method: "GET",
-      url: "/api/helprequest",
+      url: "/api/HelpRequest",
       params: { id: "1" },
     });
 
@@ -154,7 +154,7 @@ describe("HelpRequest mutation coverage", () => {
     };
 
     expect(requestBuilder(data)).toEqual({
-      url: "/api/helprequest",
+      url: "/api/HelpRequest",
       method: "PUT",
       params: { id: 1 },
       data: {
@@ -167,7 +167,7 @@ describe("HelpRequest mutation coverage", () => {
       },
     });
 
-    expect(invalidationKeys).toEqual(["/api/helprequest?id=1"]);
+    expect(invalidationKeys).toEqual(["/api/HelpRequest?id=1"]);
     expect(options.onSuccess).toEqual(expect.any(Function));
 
     options.onSuccess({ id: 42 });
@@ -198,10 +198,10 @@ describe("HelpRequest mutation coverage", () => {
     renderRoute(<HelpRequestIndexPage />, "/helprequest", "/helprequest");
 
     expect(useBackend).toHaveBeenCalledWith(
-      ["/api/helprequest/all"],
+      ["/api/HelpRequest/all"],
       {
         method: "GET",
-        url: "/api/helprequest/all",
+        url: "/api/HelpRequest/all",
       },
       [],
     );

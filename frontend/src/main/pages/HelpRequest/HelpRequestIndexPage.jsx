@@ -9,8 +9,8 @@ export default function HelpRequestIndexPage() {
   const currentUser = useCurrentUser();
 
   const { data: helpRequests } = useBackend(
-    ["/api/helprequest/all"],
-    { method: "GET", url: "/api/helprequest/all" },
+    ["/api/HelpRequest/all"],
+    { method: "GET", url: "/api/HelpRequest/all" },
     [],
   );
 
