@@ -20,4 +20,4 @@ repo_name: "TBD"
 repo: ucsb-cs156-f26/team02-f26-14
 owner: ucsb-cs156-f26
 repo_name: team02-f26-14
-pull_requests: []
+pull_requests: [{"author":{"id":"U_kgDOBl5nWw","is_bot":false,"login":"krithih","name":"Krithi Haresamudra"},"headRefName":"fix-menuitems","number":119,"title":"Add UCSBDiningCommonsMenuItem navbar link","url":"https://github.com/ucsb-cs156-f26/team02-f26-14/pull/119"}]
