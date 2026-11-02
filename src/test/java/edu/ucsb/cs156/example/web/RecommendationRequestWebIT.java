@@ -22,7 +22,7 @@ public class RecommendationRequestWebIT extends WebTestCase {
 
     setupUser(true);
 
-    page.getByText("RecommendationRequests").click();
+    page.getByText("RecommendationRequest").click();
 
     page.getByText("Create RecommendationRequest").click();
 
