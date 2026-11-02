@@ -20,4 +20,4 @@ repo_name: "TBD"
 repo: ucsb-cs156-f26/team02-f26-14
 owner: ucsb-cs156-f26
 repo_name: team02-f26-14
-pull_requests: [{"author":{"id":"U_kgDOCxuhfQ","is_bot":false,"login":"R-R-R-N-U-C-S-B","name":""},"headRefName":"ryan-RecommendationRequest-integrationTest","number":126,"title":"Add RecommendationRequest integration and E2E tests","url":"https://github.com/ucsb-cs156-f26/team02-f26-14/pull/126"}]
+pull_requests: [{"author":{"id":"U_kgDOCq4mvA","is_bot":false,"login":"dlssantosray","name":"Raymundo De Los Santos"},"headRefName":"ray-jpa04-integration-tests","number":133,"title":"ray - add integration tests for HelpRequest Controller endpoints","url":"https://github.com/ucsb-cs156-f26/team02-f26-14/pull/133"},{"author":{"id":"U_kgDOCxuhfQ","is_bot":false,"login":"R-R-R-N-U-C-S-B","name":""},"headRefName":"ryan-RecommendationRequest-integrationTest","number":126,"title":"Add RecommendationRequest integration and E2E tests","url":"https://github.com/ucsb-cs156-f26/team02-f26-14/pull/126"}]
