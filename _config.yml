@@ -20,4 +20,4 @@ repo_name: "TBD"
 repo: ucsb-cs156-f26/team02-f26-14
 owner: ucsb-cs156-f26
 repo_name: team02-f26-14
-pull_requests: [{"author":{"id":"U_kgDOCq4mvA","is_bot":false,"login":"dlssantosray","name":"Raymundo De Los Santos"},"headRefName":"ray-HelpRequest-e2e-only","number":134,"title":"ray - add end-to-end tests for HelpRequest","url":"https://github.com/ucsb-cs156-f26/team02-f26-14/pull/134"}]
+pull_requests: []
